@@ -1205,9 +1205,6 @@ func TestUpdateCfg(t *testing.T) {
 			desc: "add to few configs",
 			cfg:  server.ServerConfig{},
 			toolsFile: ToolsFile{
-				Sources:      server.SourceConfigs{},
-				AuthServices: server.AuthServiceConfigs{},
-				Tools:        server.ToolConfigs{},
 				Toolsets: server.ToolsetConfigs{
 					"test-toolset": tools.ToolsetConfig{
 						Name: "test-toolset",
@@ -1215,9 +1212,6 @@ func TestUpdateCfg(t *testing.T) {
 				},
 			},
 			want: server.ServerConfig{
-				SourceConfigs:      server.SourceConfigs{},
-				AuthServiceConfigs: server.AuthServiceConfigs{},
-				ToolConfigs:        server.ToolConfigs{},
 				ToolsetConfigs: server.ToolsetConfigs{
 					"test-toolset": tools.ToolsetConfig{
 						Name: "test-toolset",
@@ -1255,9 +1249,6 @@ func TestUpdateCfg(t *testing.T) {
 						Name: "test-source",
 					},
 				},
-				AuthServices: server.AuthServiceConfigs{},
-				Tools:        server.ToolConfigs{},
-				Toolsets:     server.ToolsetConfigs{},
 			},
 			want: server.ServerConfig{
 				SourceConfigs: server.SourceConfigs{
@@ -1265,17 +1256,11 @@ func TestUpdateCfg(t *testing.T) {
 						Name: "test-source",
 					},
 				},
-				AuthServiceConfigs: server.AuthServiceConfigs{},
-				ToolConfigs:        server.ToolConfigs{},
-				ToolsetConfigs:     server.ToolsetConfigs{},
 			},
 		},
 		{
 			desc: "no change to configs",
 			cfg: server.ServerConfig{
-				SourceConfigs:      server.SourceConfigs{},
-				AuthServiceConfigs: server.AuthServiceConfigs{},
-				ToolConfigs:        server.ToolConfigs{},
 				ToolsetConfigs: server.ToolsetConfigs{
 					"test-toolset": tools.ToolsetConfig{
 						Name: "test-toolset",
@@ -1283,9 +1268,6 @@ func TestUpdateCfg(t *testing.T) {
 				},
 			},
 			toolsFile: ToolsFile{
-				Sources:      server.SourceConfigs{},
-				AuthServices: server.AuthServiceConfigs{},
-				Tools:        server.ToolConfigs{},
 				Toolsets: server.ToolsetConfigs{
 					"test-toolset": tools.ToolsetConfig{
 						Name: "test-toolset",
@@ -1293,9 +1275,6 @@ func TestUpdateCfg(t *testing.T) {
 				},
 			},
 			want: server.ServerConfig{
-				SourceConfigs:      server.SourceConfigs{},
-				AuthServiceConfigs: server.AuthServiceConfigs{},
-				ToolConfigs:        server.ToolConfigs{},
 				ToolsetConfigs: server.ToolsetConfigs{
 					"test-toolset": tools.ToolsetConfig{
 						Name: "test-toolset",
@@ -1306,9 +1285,6 @@ func TestUpdateCfg(t *testing.T) {
 		{
 			desc: "add authSources in config",
 			cfg: server.ServerConfig{
-				SourceConfigs:      server.SourceConfigs{},
-				AuthServiceConfigs: server.AuthServiceConfigs{},
-				ToolConfigs:        server.ToolConfigs{},
 				ToolsetConfigs: server.ToolsetConfigs{
 					"test-toolset": tools.ToolsetConfig{
 						Name: "test-toolset",
@@ -1316,14 +1292,11 @@ func TestUpdateCfg(t *testing.T) {
 				},
 			},
 			toolsFile: ToolsFile{
-				Sources:      server.SourceConfigs{},
-				AuthServices: server.AuthServiceConfigs{},
 				AuthSources: server.AuthServiceConfigs{
 					"test-auth": google.Config{
 						Name: "test-auth",
 					},
 				},
-				Tools: server.ToolConfigs{},
 				Toolsets: server.ToolsetConfigs{
 					"test-toolset": tools.ToolsetConfig{
 						Name: "test-toolset",
@@ -1331,13 +1304,11 @@ func TestUpdateCfg(t *testing.T) {
 				},
 			},
 			want: server.ServerConfig{
-				SourceConfigs: server.SourceConfigs{},
 				AuthServiceConfigs: server.AuthServiceConfigs{
 					"test-auth": google.Config{
 						Name: "test-auth",
 					},
 				},
-				ToolConfigs: server.ToolConfigs{},
 				ToolsetConfigs: server.ToolsetConfigs{
 					"test-toolset": tools.ToolsetConfig{
 						Name: "test-toolset",

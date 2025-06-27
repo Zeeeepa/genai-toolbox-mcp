@@ -147,7 +147,7 @@ func TestUpdateServer(t *testing.T) {
 			Name: "example-toolset", Tools: []*tools.Tool{},
 		},
 	}
-	err = server.UpdateServer(ctx, s, newSources, newAuth, newTools, newToolsets)
+	s.ConfigManager.SetConfigs(newSources, newAuth, newTools, newToolsets)
 	if err != nil {
 		t.Errorf("error updating server: %s", err)
 	}

@@ -87,11 +87,11 @@ func (m *ConfigManager) GetToolset(toolsetName string) (tools.Toolset, bool) {
 
 func (m *ConfigManager) SetConfigs(sourcesMap map[string]sources.Source, authServicesMap map[string]auth.AuthService, toolsMap map[string]tools.Tool, toolsetsMap map[string]tools.Toolset) {
 	m.mu.Lock()
+	defer m.mu.Unlock()
 	m.sources = sourcesMap
 	m.authServices = authServicesMap
 	m.tools = toolsMap
 	m.toolsets = toolsetsMap
-	m.mu.Unlock()
 }
 
 func (m *ConfigManager) GetAuthServiceMap() map[string]auth.AuthService {
@@ -322,18 +322,6 @@ func NewServer(ctx context.Context, cfg ServerConfig) (*Server, error) {
 	})
 
 	return s, nil
-}
-
-func UpdateServer(ctx context.Context, s *Server, sourcesMap map[string]sources.Source, authServicesMap map[string]auth.AuthService, toolsMap map[string]tools.Tool, toolsetsMap map[string]tools.Toolset) error {
-	l, err := util.LoggerFromContext(ctx)
-	if err != nil {
-		panic(err)
-	}
-
-	l.DebugContext(ctx, "Attempting to update the server with reloaded configs")
-	s.ConfigManager.SetConfigs(sourcesMap, authServicesMap, toolsMap, toolsetsMap)
-	// TODO: form of error handling? Can errors even occur within setConfig
-	return nil
 }
 
 // Listen starts a listener for the given Server instance.

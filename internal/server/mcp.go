@@ -428,7 +428,7 @@ func processMcpMessage(ctx context.Context, body []byte, s *Server, toolsetName 
 		}
 		toolName := req.Params.Name
 		toolArgument := req.Params.Arguments
-		s.logger.DebugContext(ctx, fmt.Sprintf("tool name: %s", toolName))
+		logger.DebugContext(ctx, fmt.Sprintf("tool name: %s", toolName))
 		tool, ok := s.ConfigManager.GetTool(toolName)
 		if !ok {
 			err = fmt.Errorf("invalid tool name: tool with name %q does not exist", toolName)

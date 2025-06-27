@@ -253,12 +253,7 @@ func handleDynamicReload(ctx context.Context, buf []byte, cfg *server.ServerConf
 		return err
 	}
 
-	err = server.UpdateServer(ctx, s, sourcesMap, authServicesMap, toolsMap, toolsetsMap)
-	if err != nil {
-		errMsg := fmt.Errorf("unable to update server after reload: %w", err)
-		logger.WarnContext(ctx, errMsg.Error())
-		return err
-	}
+	s.ConfigManager.SetConfigs(sourcesMap, authServicesMap, toolsMap, toolsetsMap)
 
 	return nil
 }
