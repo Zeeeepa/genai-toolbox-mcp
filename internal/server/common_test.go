@@ -163,7 +163,7 @@ func setUpServer(t *testing.T, router string, tools map[string]tools.Tool, tools
 		toolsets: toolsets,
 	}
 
-	server := Server{version: fakeVersionString, logger: testLogger, instrumentation: instrumentation, sseManager: sseManager, ResourceManager: resourceManager}
+	server := Server{version: fakeVersionString, logger: testLogger, instrumentation: instrumentation, sseManager: sseManager, resourceManager: resourceManager}
 	var r chi.Router
 	switch router {
 	case "api":

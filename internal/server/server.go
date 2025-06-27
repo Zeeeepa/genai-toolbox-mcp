@@ -46,7 +46,7 @@ type Server struct {
 	logger          log.Logger
 	instrumentation *telemetry.Instrumentation
 	sseManager      *sseManager
-	ResourceManager *ResourceManager
+	resourceManager *ResourceManager
 }
 
 type ResourceManager struct {
@@ -303,7 +303,7 @@ func NewServer(ctx context.Context, cfg ServerConfig) (*Server, error) {
 		logger:          l,
 		instrumentation: instrumentation,
 		sseManager:      sseManager,
-		ResourceManager: resourceManager,
+		resourceManager: resourceManager,
 	}
 	// control plane
 	apiR, err := apiRouter(s)

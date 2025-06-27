@@ -429,7 +429,7 @@ func TestStdioSession(t *testing.T) {
 		toolsets: toolsets,
 	}
 
-	server := &Server{version: fakeVersionString, logger: testLogger, instrumentation: instrumentation, sseManager: sseManager, ResourceManager: resourceManager}
+	server := &Server{version: fakeVersionString, logger: testLogger, instrumentation: instrumentation, sseManager: sseManager, resourceManager: resourceManager}
 
 	in := bufio.NewReader(pr)
 	stdioSession := NewStdioSession(server, in, pw)
